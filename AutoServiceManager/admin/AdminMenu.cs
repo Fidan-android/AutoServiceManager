@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AutoServiceManager
+namespace AutoServiceManager.admin
 {
-    public partial class Form1 : Form
+    public partial class AdminMenu : Form
     {
-        public Form1()
+        public AdminMenu()
         {
             InitializeComponent();
+        }
+
+        private void AdminMenu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            helpers.Helper.Quit();
         }
     }
 }
