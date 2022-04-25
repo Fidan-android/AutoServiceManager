@@ -135,7 +135,6 @@
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.carTableAdapter = null;
             this.tableAdapterManager.clientTableAdapter = null;
-            this.tableAdapterManager.requestTableAdapter = null;
             this.tableAdapterManager.spares_orderTableAdapter = null;
             this.tableAdapterManager.spareTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = AutoServiceManager.AutoserviceDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;

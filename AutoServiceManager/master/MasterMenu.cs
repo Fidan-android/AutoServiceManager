@@ -10,16 +10,63 @@ using System.Windows.Forms;
 
 namespace AutoServiceManager.master
 {
-    public partial class MasterMenu : Form
+    public sealed partial class MasterMenu : helpers.BaseForm
     {
         public MasterMenu()
         {
             InitializeComponent();
         }
 
+        private void MasterMenu_Load(object sender, EventArgs e) {
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "autoserviceDataSet.order". При необходимости она может быть перемещена или удалена.
+            this.orderTableAdapter.Fill(this.autoserviceDataSet.order);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "autoserviceDataSet.worker". При необходимости она может быть перемещена или удалена.
+            this.workerTableAdapter.Fill(this.autoserviceDataSet.worker);
+            if (helpers.Helper.UserId == 0) {
+                helpers.Helper.Quit(false);
+            } else {
+                var worker = autoserviceDataSet.worker.Where(w => w.id == helpers.Helper.UserId).First();
+                masterNameLabel.Text = "Мастер: " + worker.first_name + " " + worker.middle_name;
+
+                var orders = (from order in autoserviceDataSet.order
+                             where order.status == "Выполняется"
+                             join order_worker in autoserviceDataSet.order_worker on order.id equals order_worker.order_id
+                             where order_worker.worker_id == worker.id
+                             select order.id).ToList();
+                //var orders = autoserviceDataSet.order.Where(r => r.worker_id == worker.id && r.status.Equals("Выполняется"));
+                if (orders.Count() == 0) {
+                    currentOrderButton.Enabled = false;
+                } else {
+                    openedOrdersButton.Enabled = false;
+                }
+            }
+        }
+
         private void MasterMenu_FormClosing(object sender, FormClosingEventArgs e)
         {
-            helpers.Helper.Quit();
+            var confirmResult = MessageBox.Show("Вы действительно хотите выйти из приложения?",
+                                     "Confirm Exit!!",
+                                     MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes) { helpers.Helper.Quit(); }
+            else { e.Cancel = true; }
+        }
+
+        private void openedOrdersButton_Click(object sender, EventArgs e)
+        {
+            helpers.Helper.BackStack = this;
+            new OpenedOrders().Show();
+        }
+
+        private void currentOrderButton_Click(object sender, EventArgs e)
+        {
+            helpers.Helper.BackStack = this;
+            new CurrentOrder().Show();
+        }
+
+        private void closedOrdersButton_Click(object sender, EventArgs e)
+        {
+            helpers.Helper.BackStack = this;
+            new ClosedOrders().Show();
         }
     }
 }

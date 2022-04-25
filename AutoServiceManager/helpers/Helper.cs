@@ -27,20 +27,27 @@ namespace AutoServiceManager.helpers
             set { _PasswordImage = value; }
         }
 
-        private static Login _LoginInstance = null;
-        public static Login LoginInstance {
-            get {
-                return _LoginInstance;
+        private static List<BaseForm> _BackStack = new List<BaseForm>();
+        public static BaseForm BackStack
+        {
+            get
+            {
+                var last = _BackStack.Last();
+                _BackStack.Remove(last);
+                return last;
             }
-            set {
-                _LoginInstance = value;
-                _LoginInstance.Hide();
+            set
+            {
+                _BackStack.Add(value);
+                _BackStack.Last().Hide();
             }
         }
 
         public static void Quit(bool IsClose = true)
         {
-            (IsClose ? (Action)_LoginInstance.Close : (Action)_LoginInstance.Show)();
+            (IsClose ? (Action)_BackStack.First().Close : BackStack.Show)();
         }
+
+        public static int UserId = 0;
     }
 }

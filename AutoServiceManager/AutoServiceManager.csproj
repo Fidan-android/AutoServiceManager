@@ -32,6 +32,26 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -57,12 +77,28 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AutoserviceDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="helpers\BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="helpers\Helper.cs" />
+    <Compile Include="helpers\IUpdateContract.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="master\ClosedOrders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="master\ClosedOrders.Designer.cs">
+      <DependentUpon>ClosedOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="master\CurrentOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="master\CurrentOrder.Designer.cs">
+      <DependentUpon>CurrentOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="master\MasterMenu.cs">
       <SubType>Form</SubType>
@@ -70,16 +106,34 @@
     <Compile Include="master\MasterMenu.Designer.cs">
       <DependentUpon>MasterMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="master\OpenedOrders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="master\OpenedOrders.Designer.cs">
+      <DependentUpon>OpenedOrders.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="admin\AdminMenu.resx">
       <DependentUpon>AdminMenu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="helpers\BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="master\ClosedOrders.resx">
+      <DependentUpon>ClosedOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="master\CurrentOrder.resx">
+      <DependentUpon>CurrentOrder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="master\MasterMenu.resx">
       <DependentUpon>MasterMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="master\OpenedOrders.resx">
+      <DependentUpon>OpenedOrders.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

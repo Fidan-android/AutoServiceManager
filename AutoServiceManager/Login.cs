@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace AutoServiceManager
 {
-    public partial class Login : Form
+    public partial class Login : helpers.BaseForm
     {
         private AutoserviceDataSet.workerRow worker = null; 
         public Login()
@@ -64,18 +64,19 @@ namespace AutoServiceManager
         private void successAuth_Tick(object sender, EventArgs e)
         {
             successLabel.Visible = false;
+            helpers.Helper.UserId = worker.id;
             successAuth.Stop();
             switch (worker.role)
             {
                 case "admin":
                     {
-                        helpers.Helper.LoginInstance = this;
+                        helpers.Helper.BackStack = this;
                         new admin.AdminMenu().Show();
                         break;
                     }
                 case "master":
                     {
-                        helpers.Helper.LoginInstance = this;
+                        helpers.Helper.BackStack = this;
                         new master.MasterMenu().Show();
                         break;
                     }
