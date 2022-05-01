@@ -66,11 +66,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin\AddCar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin\AddCar.Designer.cs">
+      <DependentUpon>AddCar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin\AddClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin\AddClient.Designer.cs">
+      <DependentUpon>AddClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Cars.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin\Cars.Designer.cs">
+      <DependentUpon>Cars.cs</DependentUpon>
+    </Compile>
     <Compile Include="admin\AdminMenu.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="admin\AdminMenu.Designer.cs">
       <DependentUpon>AdminMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Clients.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin\Clients.Designer.cs">
+      <DependentUpon>Clients.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Orders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin\Orders.Designer.cs">
+      <DependentUpon>Orders.cs</DependentUpon>
     </Compile>
     <Compile Include="AutoserviceDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -87,6 +117,12 @@
     </Compile>
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="master\AddSpare.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="master\AddSpare.Designer.cs">
+      <DependentUpon>AddSpare.cs</DependentUpon>
     </Compile>
     <Compile Include="master\ClosedOrders.cs">
       <SubType>Form</SubType>
@@ -114,14 +150,32 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="admin\AddCar.resx">
+      <DependentUpon>AddCar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\AddClient.resx">
+      <DependentUpon>AddClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\Cars.resx">
+      <DependentUpon>Cars.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="admin\AdminMenu.resx">
       <DependentUpon>AdminMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\Clients.resx">
+      <DependentUpon>Clients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\Orders.resx">
+      <DependentUpon>Orders.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="helpers\BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="master\AddSpare.resx">
+      <DependentUpon>AddSpare.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="master\ClosedOrders.resx">
       <DependentUpon>ClosedOrders.cs</DependentUpon>

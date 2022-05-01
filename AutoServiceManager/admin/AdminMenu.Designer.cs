@@ -35,6 +35,9 @@
             this.workerTableAdapter = new AutoServiceManager.AutoserviceDataSetTableAdapters.workerTableAdapter();
             this.tableAdapterManager = new AutoServiceManager.AutoserviceDataSetTableAdapters.TableAdapterManager();
             this.adminNameLabel = new System.Windows.Forms.Label();
+            this.createOrderButton = new System.Windows.Forms.Button();
+            this.clientButton = new System.Windows.Forms.Button();
+            this.addCarButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.autoserviceDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.workerBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -58,6 +61,8 @@
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.carTableAdapter = null;
             this.tableAdapterManager.clientTableAdapter = null;
+            this.tableAdapterManager.order_workerTableAdapter = null;
+            this.tableAdapterManager.orderTableAdapter = null;
             this.tableAdapterManager.spares_orderTableAdapter = null;
             this.tableAdapterManager.spareTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = AutoServiceManager.AutoserviceDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
@@ -74,11 +79,50 @@
             this.adminNameLabel.TabIndex = 4;
             this.adminNameLabel.Text = "Админ:";
             // 
+            // createOrderButton
+            // 
+            this.createOrderButton.AutoSize = true;
+            this.createOrderButton.Font = new System.Drawing.Font("Georgia", 12.25F);
+            this.createOrderButton.Location = new System.Drawing.Point(90, 128);
+            this.createOrderButton.Name = "createOrderButton";
+            this.createOrderButton.Size = new System.Drawing.Size(170, 30);
+            this.createOrderButton.TabIndex = 6;
+            this.createOrderButton.Text = "Создать заявку";
+            this.createOrderButton.UseVisualStyleBackColor = true;
+            this.createOrderButton.Click += new System.EventHandler(this.createOrderButton_Click);
+            // 
+            // clientButton
+            // 
+            this.clientButton.AutoSize = true;
+            this.clientButton.Font = new System.Drawing.Font("Georgia", 12.25F);
+            this.clientButton.Location = new System.Drawing.Point(90, 56);
+            this.clientButton.Name = "clientButton";
+            this.clientButton.Size = new System.Drawing.Size(170, 30);
+            this.clientButton.TabIndex = 5;
+            this.clientButton.Text = "Клиенты";
+            this.clientButton.UseVisualStyleBackColor = true;
+            this.clientButton.Click += new System.EventHandler(this.clientButton_Click);
+            // 
+            // addCarButton
+            // 
+            this.addCarButton.AutoSize = true;
+            this.addCarButton.Font = new System.Drawing.Font("Georgia", 12.25F);
+            this.addCarButton.Location = new System.Drawing.Point(90, 92);
+            this.addCarButton.Name = "addCarButton";
+            this.addCarButton.Size = new System.Drawing.Size(170, 30);
+            this.addCarButton.TabIndex = 7;
+            this.addCarButton.Text = "Машины";
+            this.addCarButton.UseVisualStyleBackColor = true;
+            this.addCarButton.Click += new System.EventHandler(this.addCarButton_Click);
+            // 
             // AdminMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(390, 263);
+            this.ClientSize = new System.Drawing.Size(358, 188);
+            this.Controls.Add(this.addCarButton);
+            this.Controls.Add(this.createOrderButton);
+            this.Controls.Add(this.clientButton);
             this.Controls.Add(this.adminNameLabel);
             this.Font = new System.Drawing.Font("Georgia", 8.25F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -102,5 +146,8 @@
         private AutoserviceDataSetTableAdapters.workerTableAdapter workerTableAdapter;
         private AutoserviceDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.Label adminNameLabel;
+        private System.Windows.Forms.Button createOrderButton;
+        private System.Windows.Forms.Button clientButton;
+        private System.Windows.Forms.Button addCarButton;
     }
 }

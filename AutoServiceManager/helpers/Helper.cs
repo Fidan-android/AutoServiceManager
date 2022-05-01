@@ -49,5 +49,6 @@ namespace AutoServiceManager.helpers
         }
 
         public static int UserId = 0;
+        public static int OrderId = 0;
     }
 }

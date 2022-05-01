@@ -65,6 +65,7 @@ namespace AutoServiceManager
         {
             successLabel.Visible = false;
             helpers.Helper.UserId = worker.id;
+            logInButton.Enabled = true;
             successAuth.Stop();
             switch (worker.role)
             {

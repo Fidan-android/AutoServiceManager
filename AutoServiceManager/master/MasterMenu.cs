@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace AutoServiceManager.master
 {
-    public sealed partial class MasterMenu : helpers.BaseForm
+    public sealed partial class MasterMenu : helpers.BaseForm, helpers.IUpdateContract
     {
         public MasterMenu()
         {
@@ -18,28 +18,8 @@ namespace AutoServiceManager.master
         }
 
         private void MasterMenu_Load(object sender, EventArgs e) {
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "autoserviceDataSet.order". При необходимости она может быть перемещена или удалена.
-            this.orderTableAdapter.Fill(this.autoserviceDataSet.order);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "autoserviceDataSet.worker". При необходимости она может быть перемещена или удалена.
-            this.workerTableAdapter.Fill(this.autoserviceDataSet.worker);
-            if (helpers.Helper.UserId == 0) {
-                helpers.Helper.Quit(false);
-            } else {
-                var worker = autoserviceDataSet.worker.Where(w => w.id == helpers.Helper.UserId).First();
-                masterNameLabel.Text = "Мастер: " + worker.first_name + " " + worker.middle_name;
-
-                var orders = (from order in autoserviceDataSet.order
-                             where order.status == "Выполняется"
-                             join order_worker in autoserviceDataSet.order_worker on order.id equals order_worker.order_id
-                             where order_worker.worker_id == worker.id
-                             select order.id).ToList();
-                //var orders = autoserviceDataSet.order.Where(r => r.worker_id == worker.id && r.status.Equals("Выполняется"));
-                if (orders.Count() == 0) {
-                    currentOrderButton.Enabled = false;
-                } else {
-                    openedOrdersButton.Enabled = false;
-                }
-            }
+            configureData();
+            onUpdateUI();
         }
 
         private void MasterMenu_FormClosing(object sender, FormClosingEventArgs e)
@@ -67,6 +47,39 @@ namespace AutoServiceManager.master
         {
             helpers.Helper.BackStack = this;
             new ClosedOrders().Show();
+        }
+
+        private void configureData()
+        {
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "autoserviceDataSet.order_worker". При необходимости она может быть перемещена или удалена.
+            this.order_workerTableAdapter.Fill(this.autoserviceDataSet.order_worker);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "autoserviceDataSet.order". При необходимости она может быть перемещена или удалена.
+            this.orderTableAdapter.Fill(this.autoserviceDataSet.order);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "autoserviceDataSet.worker". При необходимости она может быть перемещена или удалена.
+            this.workerTableAdapter.Fill(this.autoserviceDataSet.worker);
+        }
+
+        public void onUpdateUI()
+        {
+            configureData();
+            if (helpers.Helper.UserId == 0)
+            {
+                helpers.Helper.Quit(false);
+            }
+            else
+            {
+                var worker = autoserviceDataSet.worker.Where(w => w.id == helpers.Helper.UserId).First();
+                masterNameLabel.Text = "Мастер: " + worker.first_name + " " + worker.middle_name;
+
+                var orders = (from order in autoserviceDataSet.order
+                              join order_worker in autoserviceDataSet.order_worker on order.id equals order_worker.order_id
+                              where order.status == "Выполняется" && order_worker.worker_id == worker.id
+                              select order.id).ToList();
+                //var orders = autoserviceDataSet.order.Where(r => r.worker_id == worker.id && r.status.Equals("Выполняется"));
+
+                currentOrderButton.Enabled = orders.Count() != 0;
+                openedOrdersButton.Enabled = orders.Count() == 0;
+            }
         }
     }
 }

@@ -31,6 +31,7 @@ namespace AutoServiceManager.master
             this.carTableAdapter.Fill(this.autoserviceDataSet.car);
             // TODO: данная строка кода позволяет загрузить данные в таблицу "autoserviceDataSet.order". При необходимости она может быть перемещена или удалена.
             this.orderTableAdapter.Fill(this.autoserviceDataSet.order);
+
             this.onUpdateUI();
         }
 
@@ -58,7 +59,9 @@ namespace AutoServiceManager.master
 
         private void OpenedOrders_FormClosing(object sender, FormClosingEventArgs e)
         {
-            helpers.Helper.BackStack.Show();
+            MasterMenu forma = (MasterMenu)helpers.Helper.BackStack;
+            forma.onUpdateUI();
+            forma.Show();
         }
 
         private int takenOrder = 0;
@@ -72,9 +75,10 @@ namespace AutoServiceManager.master
                                      MessageBoxButtons.YesNo);
                 if (confirmResult == DialogResult.Yes) {
                     order_workerTableAdapter.InsertQuery(takenOrder, helpers.Helper.UserId);
+                    orderTableAdapter.UpdateStatus("Выполняется", takenOrder);
                     this.onUpdateUI();
                     MessageBox.Show("Заявка успешно выбрана!");
-                    helpers.Helper.BackStack.Show();
+                    Close();
                 }
 
             } else { MessageBox.Show("Выберите заказ из таблицы"); }

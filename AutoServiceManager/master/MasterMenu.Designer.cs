@@ -40,9 +40,12 @@
             this.tableAdapterManager = new AutoServiceManager.AutoserviceDataSetTableAdapters.TableAdapterManager();
             this.orderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.orderTableAdapter = new AutoServiceManager.AutoserviceDataSetTableAdapters.orderTableAdapter();
+            this.order_workerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.order_workerTableAdapter = new AutoServiceManager.AutoserviceDataSetTableAdapters.order_workerTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.autoserviceDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.workerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.order_workerBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // openedOrdersButton
@@ -126,11 +129,20 @@
             // 
             this.orderTableAdapter.ClearBeforeFill = true;
             // 
+            // order_workerBindingSource
+            // 
+            this.order_workerBindingSource.DataMember = "order_worker";
+            this.order_workerBindingSource.DataSource = this.autoserviceDataSet;
+            // 
+            // order_workerTableAdapter
+            // 
+            this.order_workerTableAdapter.ClearBeforeFill = true;
+            // 
             // MasterMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(310, 177);
+            this.ClientSize = new System.Drawing.Size(319, 177);
             this.Controls.Add(this.closedOrdersButton);
             this.Controls.Add(this.currentOrderButton);
             this.Controls.Add(this.masterNameLabel);
@@ -146,6 +158,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.autoserviceDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.workerBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.order_workerBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -163,5 +176,7 @@
         private System.Windows.Forms.Button closedOrdersButton;
         private System.Windows.Forms.BindingSource orderBindingSource;
         private AutoserviceDataSetTableAdapters.orderTableAdapter orderTableAdapter;
+        private System.Windows.Forms.BindingSource order_workerBindingSource;
+        private AutoserviceDataSetTableAdapters.order_workerTableAdapter order_workerTableAdapter;
     }
 }

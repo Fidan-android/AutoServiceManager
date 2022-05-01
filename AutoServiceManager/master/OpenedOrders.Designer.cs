@@ -141,13 +141,14 @@
             // 
             // OpenedOrders
             // 
-            this.ClientSize = new System.Drawing.Size(530, 317);
+            this.ClientSize = new System.Drawing.Size(530, 292);
             this.Controls.Add(this.setMeButton);
             this.Controls.Add(this.openedOrdersGridView);
             this.Font = new System.Drawing.Font("Georgia", 8.25F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "OpenedOrders";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Открытые заявки";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OpenedOrders_FormClosing);
             this.Load += new System.EventHandler(this.OpenedOrders_Load);
